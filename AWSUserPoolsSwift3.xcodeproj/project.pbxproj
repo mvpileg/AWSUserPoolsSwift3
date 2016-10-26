@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		C91641F11DC02879002D0AA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91641F01DC02879002D0AA3 /* AppDelegate.swift */; };
-		C91641F31DC02879002D0AA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91641F21DC02879002D0AA3 /* ViewController.swift */; };
 		C91641F61DC02879002D0AA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91641F41DC02879002D0AA3 /* Main.storyboard */; };
 		C91641F81DC02879002D0AA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91641F71DC02879002D0AA3 /* Assets.xcassets */; };
 		C91641FB1DC02879002D0AA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91641F91DC02879002D0AA3 /* LaunchScreen.storyboard */; };
+		C91642031DC0323A002D0AA3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91642021DC0323A002D0AA3 /* LoginViewController.swift */; };
+		C91642051DC03436002D0AA3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91642041DC03436002D0AA3 /* SignUpViewController.swift */; };
+		C91642071DC03A36002D0AA3 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91642061DC03A36002D0AA3 /* LoggedInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C91641ED1DC02879002D0AA3 /* AWSUserPoolsSwift3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AWSUserPoolsSwift3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91641F01DC02879002D0AA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C91641F21DC02879002D0AA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C91641F51DC02879002D0AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C91641F71DC02879002D0AA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C91641FA1DC02879002D0AA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C91641FC1DC02879002D0AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C91642021DC0323A002D0AA3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C91642041DC03436002D0AA3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C91642061DC03A36002D0AA3 /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				C91641F01DC02879002D0AA3 /* AppDelegate.swift */,
-				C91641F21DC02879002D0AA3 /* ViewController.swift */,
 				C91641F41DC02879002D0AA3 /* Main.storyboard */,
 				C91641F71DC02879002D0AA3 /* Assets.xcassets */,
 				C91641F91DC02879002D0AA3 /* LaunchScreen.storyboard */,
 				C91641FC1DC02879002D0AA3 /* Info.plist */,
+				C91642021DC0323A002D0AA3 /* LoginViewController.swift */,
+				C91642041DC03436002D0AA3 /* SignUpViewController.swift */,
+				C91642061DC03A36002D0AA3 /* LoggedInViewController.swift */,
 			);
 			path = AWSUserPoolsSwift3;
 			sourceTree = "<group>";
@@ -137,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C91641F31DC02879002D0AA3 /* ViewController.swift in Sources */,
+				C91642051DC03436002D0AA3 /* SignUpViewController.swift in Sources */,
+				C91642031DC0323A002D0AA3 /* LoginViewController.swift in Sources */,
 				C91641F11DC02879002D0AA3 /* AppDelegate.swift in Sources */,
+				C91642071DC03A36002D0AA3 /* LoggedInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
