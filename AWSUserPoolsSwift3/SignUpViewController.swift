@@ -7,42 +7,68 @@
 //
 
 import UIKit
+import AWSCognitoIdentityProvider
 
 class SignUpViewController: UIViewController {
 
+    
+    //MARK: Outlets
+    
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
+    
+    
     //MARK: Actions
     
-    @IBAction func finish(_ sender: UIBarButtonItem) {
-        _ = self.navigationController?.popViewController(animated: true)
+    @IBAction func finish() {
+
+        let email = AWSCognitoIdentityUserAttributeType()
+        
+        email?.name = "email"
+        email?.value = emailField.text
+        
+        let attributes = [email!]
+
+        AppDelegate.instance.pool!.signUp(username.text!, password: password.text!, userAttributes: attributes, validationData: nil).continue({ task in
+            
+            if task.error != nil {
+                self.handleError(error: task.error!)
+            } else {
+                self.handleSuccess()
+            }
+
+            return nil
+        })
     }
     
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    
-    //MARK: Stock
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func cancel() {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
 
-    /*
-    // MARK: - Navigation
+    //MARK: Helper
+    
+    fileprivate func handleError(error: Error){
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let AWSError = error.getAWSError()
+        let errorAlert = UIAlertController(title: "Login Demo", message: AWSError.message)
+        errorAlert.addDismissAction()
+        
+        DispatchQueue.main.async {
+            self.present(errorAlert, animated: true, completion: nil)
+        }
     }
-    */
-
+    
+    fileprivate func handleSuccess(){
+        
+        let successHelper = VerificationHelper(viewController: self, username: username.text!) {
+            DispatchQueue.main.async {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
+        successHelper.handleVerification()
+    }
+    
 }

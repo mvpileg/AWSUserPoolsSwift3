@@ -7,17 +7,62 @@
 //
 
 import UIKit
+import AWSCognitoIdentityProvider
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
     var window: UIWindow?
+    
+    var pool: AWSCognitoIdentityUserPool?
+    var user: AWSCognitoIdentityUser?
 
-
+    var loginViewController: LoginViewController?
+    
+    static var instance: AppDelegate {
+        get {
+            return UIApplication.shared.delegate as! AppDelegate
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .usEast1, identityPoolId: AWSConstants.COGNITO_POOL_ID)
+        
+        let serviceConfiguration = AWSServiceConfiguration(region: .usEast1, credentialsProvider: credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = serviceConfiguration
+        
+        let userPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.APP_ID, clientSecret: nil, poolId: AWSConstants.USER_POOL_ID)
+        AWSCognitoIdentityUserPool.registerCognitoIdentityUserPool(with: userPoolConfiguration, forKey: AWSConstants.USER_POOL_KEY)
+        
+        
+        self.pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.USER_POOL_KEY)
+        self.pool!.delegate = self
+        self.user = self.pool!.currentUser()
+        
         return true
     }
+    
+    func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
+        setAndPresentLoginViewController()
+        return loginViewController!
+    }
+    
+    func setAndPresentLoginViewController() {
+        
+        if loginViewController == nil {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            loginViewController = (mainStoryboard.instantiateViewController(withIdentifier: "login") as! LoginViewController)
+        }
+        
+        DispatchQueue.main.async {
+            //presents the login from the current top view controller
+            //when dismissing you will return to the top view controller
+            let presentingViewController = UIApplication.shared.topViewController()
+            presentingViewController.present(self.loginViewController!, animated: true, completion: nil)
+        }
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

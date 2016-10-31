@@ -10,36 +10,55 @@ import UIKit
 
 class LoggedInViewController: UIViewController {
 
+    
+    //MARK: Outlets
+    
+    @IBOutlet weak var getInfoButton: UIButton!
 
+    
     //MARK: Actions
     
-    @IBAction func logout(_ sender: UIBarButtonItem) {
-        _ = self.navigationController?.popViewController(animated: true)
+    @IBAction func getInfo() {
+        loadUser()
     }
+    
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        if let user = AppDelegate.instance.user {
+            user.signOut()
+            loadUser()
+        }
+    }
+
     
     //MARK: View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: false)
-    }
-
-    //MARK: Stock
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        setUIElements(hidden: true)
+        
+        loadUser()
+        
+        self.navigationItem.hidesBackButton = true
     }
     
+    
+    //MARK: Helper
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    fileprivate func loadUser(){
+        
+        if let user = AppDelegate.instance.user {
+            user.getDetails().continue({ task in
+                DispatchQueue.main.async {
+                    self.setUIElements(hidden: false)
+                }
+            })
+        }
     }
-    */
+    
+    fileprivate func setUIElements(hidden: Bool){
+        self.navigationController?.isNavigationBarHidden = hidden
+        getInfoButton.isHidden = hidden
+    }
 
 }
