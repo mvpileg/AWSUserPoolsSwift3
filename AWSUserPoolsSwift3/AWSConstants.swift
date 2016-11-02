@@ -11,10 +11,13 @@ import Foundation
 class AWSConstants {
     
     //replace below with your own AWS Constants
-    static let COGNITO_POOL_ID = "COGNITO POOL ID"
-    static let APP_ID = "APP ID"
-    static let USER_POOL_ID = "USER POOL ID"
+    static let COGNITO_POOL_ID = ""
+    static let APP_ID = ""
+    static let USER_POOL_ID = ""
+    
+
     
     static let USER_POOL_KEY = "LoginDemo"
+    
     
 }

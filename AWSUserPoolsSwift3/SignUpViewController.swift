@@ -23,52 +23,55 @@ class SignUpViewController: UIViewController {
     //MARK: Actions
     
     @IBAction func finish() {
-
-        let email = AWSCognitoIdentityUserAttributeType()
-        
-        email?.name = "email"
-        email?.value = emailField.text
-        
-        let attributes = [email!]
-
-        AppDelegate.instance.pool!.signUp(username.text!, password: password.text!, userAttributes: attributes, validationData: nil).continue({ task in
-            
-            if task.error != nil {
-                self.handleError(error: task.error!)
-            } else {
-                self.handleSuccess()
-            }
-
-            return nil
-        })
+        signUp()
     }
     
     @IBAction func cancel() {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-
+    
     //MARK: Helper
     
-    fileprivate func handleError(error: Error){
-
-        let AWSError = error.getAWSError()
-        let errorAlert = UIAlertController(title: "Login Demo", message: AWSError.message)
-        errorAlert.addDismissAction()
+    fileprivate func signUp() {
         
-        DispatchQueue.main.async {
-            self.present(errorAlert, animated: true, completion: nil)
+        let emailAttribute = AWSCognitoIdentityUserAttributeType()
+        emailAttribute!.name = "email"
+        emailAttribute!.value = emailField.text
+        
+        let signUpHelper = SignUpHelper(viewController: self, username: username.text!, password: password.text!, attributes: [emailAttribute!]) { result in
+           
+            switch result {
+                
+            case .registered: self.verify()
+            case .unregistered: break //do nothing, let user try again
+                
+            }
+            
         }
+        signUpHelper.signUp()
     }
     
-    fileprivate func handleSuccess(){
+    fileprivate func verify() {
         
-        let successHelper = VerificationHelper(viewController: self, username: username.text!) {
-            DispatchQueue.main.async {
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+        let verificationHelper = VerificationHelper(viewController: self, username: username.text!) { result in
+            
+            if result == .verified {
+                
+                let successAlert = UIAlertController(title: "Login Demo", message: "You've successfully registered")
+                
+                successAlert.addAction(withText: "Go to login") { _ in
+                    self.dismissSelfOnMain()
+                }
+                
+                self.presentOnMain(viewController: successAlert)
+            } else {
+                self.dismissSelfOnMain()
             }
         }
-        successHelper.handleVerification()
+        
+        verificationHelper.verify()
     }
+ 
     
 }

@@ -20,6 +20,8 @@
 		C92722CD1DC7EDA000F522EF /* ErrorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92722CC1DC7EDA000F522EF /* ErrorExt.swift */; };
 		C92722D01DC7F47300F522EF /* VerificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92722CF1DC7F47300F522EF /* VerificationHelper.swift */; };
 		C937E3F21DC29FD900C9350A /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937E3F11DC29FD900C9350A /* UIApplicationExt.swift */; };
+		C9BF14F11DC95970004EDA47 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BF14F01DC95970004EDA47 /* UIViewControllerExt.swift */; };
+		C9BF14F51DC96180004EDA47 /* SignUpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BF14F41DC96180004EDA47 /* SignUpHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		C92722CC1DC7EDA000F522EF /* ErrorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorExt.swift; path = AWSUserPoolsSwift3/ErrorExt.swift; sourceTree = "<group>"; };
 		C92722CF1DC7F47300F522EF /* VerificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerificationHelper.swift; path = AWSUserPoolsSwift3/VerificationHelper.swift; sourceTree = "<group>"; };
 		C937E3F11DC29FD900C9350A /* UIApplicationExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIApplicationExt.swift; path = AWSUserPoolsSwift3/UIApplicationExt.swift; sourceTree = "<group>"; };
+		C9BF14F01DC95970004EDA47 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		C9BF14F41DC96180004EDA47 /* SignUpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpHelper.swift; sourceTree = "<group>"; };
 		CF7686DBC31B060F2A95FE90 /* Pods-AWSUserPoolsSwift3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWSUserPoolsSwift3.release.xcconfig"; path = "Pods/Target Support Files/Pods-AWSUserPoolsSwift3/Pods-AWSUserPoolsSwift3.release.xcconfig"; sourceTree = "<group>"; };
 		FB89778402CF86AE0AA0C080 /* Pods_AWSUserPoolsSwift3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AWSUserPoolsSwift3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -100,6 +104,7 @@
 				C937E3F11DC29FD900C9350A /* UIApplicationExt.swift */,
 				C90D7D5D1DC335CF00D71ADB /* UIAlertControllerExt.swift */,
 				C92722CC1DC7EDA000F522EF /* ErrorExt.swift */,
+				C9BF14F01DC95970004EDA47 /* UIViewControllerExt.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				C92722CF1DC7F47300F522EF /* VerificationHelper.swift */,
+				C9BF14F41DC96180004EDA47 /* SignUpHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9BF14F11DC95970004EDA47 /* UIViewControllerExt.swift in Sources */,
 				C90D7D5E1DC335CF00D71ADB /* UIAlertControllerExt.swift in Sources */,
 				C92722D01DC7F47300F522EF /* VerificationHelper.swift in Sources */,
 				C91642051DC03436002D0AA3 /* SignUpViewController.swift in Sources */,
@@ -265,6 +272,7 @@
 				C92722CD1DC7EDA000F522EF /* ErrorExt.swift in Sources */,
 				C91641F11DC02879002D0AA3 /* AppDelegate.swift in Sources */,
 				C91642071DC03A36002D0AA3 /* LoggedInViewController.swift in Sources */,
+				C9BF14F51DC96180004EDA47 /* SignUpHelper.swift in Sources */,
 				C937E3F21DC29FD900C9350A /* UIApplicationExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

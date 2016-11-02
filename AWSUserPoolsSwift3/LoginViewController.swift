@@ -55,9 +55,7 @@ class LoginViewController: UIViewController, AWSCognitoIdentityPasswordAuthentic
             let alertController = UIAlertController(title: "Error", message: AWSError.message, preferredStyle: .alert)
             alertController.addDismissAction()
             
-            DispatchQueue.main.async {
-                self.present(alertController, animated: true, completion: nil)
-            }
+            self.presentOnMain(viewController: alertController)
             
         } else {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
@@ -65,15 +63,28 @@ class LoginViewController: UIViewController, AWSCognitoIdentityPasswordAuthentic
     }
     
     
-    //MARK: Helper
+    //MARK: Unverified
     
     fileprivate func handleUnverifiedUser(){
-        
-        let helper = VerificationHelper(viewController: self, username: username.text!) {
-            self.login()
-        }
         AppDelegate.instance.pool?.getUser(username.text!).resendConfirmationCode()
-        helper.handleVerification(message: "\(username.text!) is unverified.  We've resent the verification code to your email on file.  Please enter it below.")
+        
+        let helper = VerificationHelper(viewController: self, username: username.text!) { result in
+            if result == .verified {
+                self.login()
+            }//else do nothing
+        }
+        
+        helper.verify(message: "\(username.text!) is unverified.  We've resent the verification code to your email on file.  Please enter it below.")
+    }
+    
+    
+    //MARK: Forgot Password
+    
+    fileprivate func handleForgotPassword(){
+        AppDelegate.instance.pool?.getUser(username.text!).forgotPassword()
+        
+        
     }
 
+    
 }
