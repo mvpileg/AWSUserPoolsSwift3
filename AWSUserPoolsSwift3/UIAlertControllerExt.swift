@@ -28,7 +28,13 @@ extension UIAlertController {
         self.addAction(dismissAction)
     }
     
-    func addTextField() {
-        self.addTextField(configurationHandler: nil)
+    func addCustomTextField(withPlaceHolder: String = "", isSecure: Bool = false) {
+        self.addTextField { textField in
+            textField.placeholder = withPlaceHolder
+            textField.isSecureTextEntry = isSecure
+        }
     }
+    
+
+
 }

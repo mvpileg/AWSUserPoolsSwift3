@@ -33,7 +33,7 @@ class VerificationHelper {
     func verify(message: String = defaultVerificationMessage){
         let registerAlert = UIAlertController(title: "Login Demo", message: message)
         
-        registerAlert.addTextField()
+        registerAlert.addCustomTextField()
         
         registerAlert.addAction(withText: "Verify", isPreferred: true) { action in
             

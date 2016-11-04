@@ -28,6 +28,9 @@ class LoginViewController: UIViewController, AWSCognitoIdentityPasswordAuthentic
     @IBAction func signUp() {
         self.performSegue(withIdentifier: "sign up", sender: nil)
     }
+    @IBAction func forgotPassword() {
+        handleForgotPassword()
+    }
     
 
     //MARK: AWSCognitoIdentityPasswordAuthentication
@@ -81,9 +84,10 @@ class LoginViewController: UIViewController, AWSCognitoIdentityPasswordAuthentic
     //MARK: Forgot Password
     
     fileprivate func handleForgotPassword(){
-        AppDelegate.instance.pool?.getUser(username.text!).forgotPassword()
         
-        
+        let forgotPasswordHelper = ForgotPasswordHelper(viewController: self) { result in
+        }
+        forgotPasswordHelper.promptForUsername()
     }
 
     

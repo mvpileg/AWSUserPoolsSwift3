@@ -55,6 +55,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oA-Ik-pyi">
+                                <rect key="frame" x="130" y="253" width="115" height="30"/>
+                                <state key="normal" title="Forgot Password"/>
+                                <connections>
+                                    <action selector="forgotPassword" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yxb-De-PeW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -68,7 +75,9 @@
                             <constraint firstItem="vMJ-iu-1gi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G9y-Qt-izG"/>
                             <constraint firstItem="QSu-Hh-XZz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="IEo-ju-LB7"/>
                             <constraint firstItem="2Zd-w6-X3Y" firstAttribute="top" secondItem="vMJ-iu-1gi" secondAttribute="bottom" constant="24" id="T3u-1O-3BS"/>
+                            <constraint firstItem="9oA-Ik-pyi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WC9-hZ-3Y6"/>
                             <constraint firstItem="QSu-Hh-XZz" firstAttribute="top" secondItem="2Zd-w6-X3Y" secondAttribute="bottom" constant="8" id="ZVC-t2-PTT"/>
+                            <constraint firstItem="9oA-Ik-pyi" firstAttribute="top" secondItem="C2i-b0-ggj" secondAttribute="bottom" constant="8" id="ih7-hm-j9q"/>
                             <constraint firstItem="2Zd-w6-X3Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="jqP-bo-20g"/>
                         </constraints>
                     </view>
